@@ -50,12 +50,24 @@ class _Body extends StatelessWidget {
       children: [
         CalculatorButton(
           text: 'C',
-          backgroundColor: Colors.white,
+          backgroundColor: CupertinoColors.systemGrey3,
           textColor: Colors.black,
         ),
-        Btn(),
-        Btn(),
-        Btn(),
+        CalculatorButton(
+          text: '+/-',
+          backgroundColor: CupertinoColors.systemGrey3,
+          textColor: Colors.black,
+        ),
+        CalculatorButton(
+          text: '%',
+          backgroundColor: CupertinoColors.systemGrey3,
+          textColor: Colors.black,
+        ),
+        CalculatorButton(
+          text: '÷',
+          backgroundColor: CupertinoColors.systemOrange,
+          textColor: Colors.white,
+        ),
       ],
     );
   }
@@ -64,10 +76,26 @@ class _Body extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Btn(),
-        Btn(),
-        Btn(),
-        Btn(),
+        CalculatorButton(
+          text: '7',
+          backgroundColor: Color.fromARGB(255, 51,51,51),
+          textColor: Colors.white,
+        ),
+        CalculatorButton(
+          text: '8',
+          backgroundColor: Color.fromARGB(255, 51,51,51),
+          textColor: Colors.white,
+        ),
+        CalculatorButton(
+          text: '9',
+          backgroundColor: Color.fromARGB(255, 51,51,51),
+          textColor: Colors.white,
+        ),
+        CalculatorButton(
+          text: 'X',
+          backgroundColor: CupertinoColors.systemOrange,
+          textColor: Colors.white,
+        ),
       ],
     );
   }
@@ -76,10 +104,26 @@ class _Body extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Btn(),
-        Btn(),
-        Btn(),
-        Btn(),
+        CalculatorButton(
+          text: '4',
+          backgroundColor: Color.fromARGB(255, 51,51,51),
+          textColor: Colors.white,
+        ),
+        CalculatorButton(
+          text: '5',
+          backgroundColor: Color.fromARGB(255, 51,51,51),
+          textColor: Colors.white,
+        ),
+        CalculatorButton(
+          text: '6',
+          backgroundColor: Color.fromARGB(255, 51,51,51),
+          textColor: Colors.white,
+        ),
+        CalculatorButton(
+          text: '-',
+          backgroundColor: CupertinoColors.systemOrange,
+          textColor: Colors.white,
+        ),
       ],
     );
   }
