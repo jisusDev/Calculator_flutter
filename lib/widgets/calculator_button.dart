@@ -25,17 +25,21 @@ class _CalculatorButtonState extends State<CalculatorButton> {
       padding: const EdgeInsets.all(6.5),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
-        child: CupertinoButton(
-          padding: EdgeInsets.zero,
-          pressedOpacity: 0.0,
-          onPressed: widget.onPressed,
-          color: widget.backgroundColor,
-          child: Text(
-            widget.text,
-            style: TextStyle(
-              fontSize: 38.0,
-              color: widget.textColor,
-              fontWeight: FontWeight.w500,
+        child: SizedBox(
+          width: 72,
+          height: 72,
+          child: CupertinoButton(
+            padding: EdgeInsets.zero,
+            pressedOpacity: 0.0,
+            onPressed: widget.onPressed,
+            color: widget.backgroundColor,
+            child: Text(
+              widget.text,
+              style: TextStyle(
+                fontSize: 38.0,
+                color: widget.textColor,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ),
