@@ -13,7 +13,7 @@ class CalculatorButton extends StatefulWidget {
     required this.backgroundColor,
     required this.textColor,
     this.onPressed,
-     this.width = 72,
+    this.width = 72,
   });
 
   @override
@@ -24,7 +24,7 @@ class _CalculatorButtonState extends State<CalculatorButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(6.5),
+      padding: const EdgeInsets.only(bottom: 12),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
         child: Container(
