@@ -30,7 +30,7 @@ class _CalculatorButtonState extends State<CalculatorButton> {
         height: 72,
         color: widget.backgroundColor,
         child: CupertinoButton(
-          padding: EdgeInsets.zero,
+          padding: const EdgeInsets.only(bottom: 12),
           pressedOpacity: 0.0,
           onPressed: widget.onPressed,
           child: Text(
