@@ -1,5 +1,6 @@
 import 'package:calculator_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class CalculatorScreen extends StatelessWidget {
   const CalculatorScreen({
@@ -28,14 +29,14 @@ class _Body extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.all(8),
-            child: ViewResult(value: '0')
+            child: ViewResult(value: '0'),
           ),
           Column(
             children: [
-              rowFourButtonsCalculator(),
-              rowFourButtonsCalculator(),
-              rowFourButtonsCalculator(),
-              rowThreeButtonsCalculator(),
+              firstRowCalculatorButtons(),
+              secondRowCalculatorButtons(),
+              thirdRowCalculatorButtons(),
+              fourthRowCalculatorButtons(),
             ],
           ),
         ],
@@ -43,7 +44,23 @@ class _Body extends StatelessWidget {
     );
   }
 
-  Widget rowFourButtonsCalculator() {
+  Widget firstRowCalculatorButtons() {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CalculatorButton(
+          text: 'C',
+          backgroundColor: Colors.white,
+          textColor: Colors.black,
+        ),
+        Btn(),
+        Btn(),
+        Btn(),
+      ],
+    );
+  }
+
+  Widget secondRowCalculatorButtons() {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -55,7 +72,19 @@ class _Body extends StatelessWidget {
     );
   }
 
-  Widget rowThreeButtonsCalculator() {
+  Widget thirdRowCalculatorButtons() {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Btn(),
+        Btn(),
+        Btn(),
+        Btn(),
+      ],
+    );
+  }
+
+  Widget fourthRowCalculatorButtons() {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -66,7 +95,6 @@ class _Body extends StatelessWidget {
     );
   }
 }
-
 
 //TODO: Elinimar este codigo hacia abajo, y reemplazar el el boton
 class Btn extends StatelessWidget {
