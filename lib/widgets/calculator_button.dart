@@ -21,30 +21,21 @@ class CalculatorButton extends StatefulWidget {
 class _CalculatorButtonState extends State<CalculatorButton> {
   @override
   Widget build(BuildContext context) {
-    final BorderRadius borderRadius = BorderRadius.circular(50);
     return Padding(
       padding: const EdgeInsets.all(6.5),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: CupertinoColors.separator,
-            width: 0.5,
-          ),
-        ),
-        child: ClipRRect(
-          borderRadius: borderRadius,
-          child: CupertinoButton(
-            padding: EdgeInsets.zero,
-            pressedOpacity: 0.0,
-            onPressed: widget.onPressed,
-            color: widget.backgroundColor,
-            child: Text(
-              widget.text,
-              style: TextStyle(
-                fontSize: 36.0,
-                color: widget.textColor,
-                fontWeight: FontWeight.w500,
-              ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(50),
+        child: CupertinoButton(
+          padding: EdgeInsets.zero,
+          pressedOpacity: 0.0,
+          onPressed: widget.onPressed,
+          color: widget.backgroundColor,
+          child: Text(
+            widget.text,
+            style: TextStyle(
+              fontSize: 38.0,
+              color: widget.textColor,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
