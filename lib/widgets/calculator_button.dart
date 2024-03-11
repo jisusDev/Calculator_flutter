@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class CalculatorButton extends StatefulWidget {
+  final double width;
   final String text;
   final Color backgroundColor;
   final Color textColor;
@@ -12,6 +13,7 @@ class CalculatorButton extends StatefulWidget {
     required this.backgroundColor,
     required this.textColor,
     this.onPressed,
+     this.width = 72,
   });
 
   @override
@@ -25,14 +27,14 @@ class _CalculatorButtonState extends State<CalculatorButton> {
       padding: const EdgeInsets.all(6.5),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
-        child: SizedBox(
-          width: 72,
+        child: Container(
+          width: widget.width,
           height: 72,
+          color: widget.backgroundColor,
           child: CupertinoButton(
             padding: EdgeInsets.zero,
             pressedOpacity: 0.0,
             onPressed: widget.onPressed,
-            color: widget.backgroundColor,
             child: Text(
               widget.text,
               style: TextStyle(
