@@ -15,9 +15,14 @@ class CalculatorScreen extends StatelessWidget {
   }
 }
 
-class _Body extends StatelessWidget {
+class _Body extends StatefulWidget {
   const _Body();
 
+  @override
+  State<_Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,139 +50,157 @@ class _Body extends StatelessWidget {
   }
 
   Widget firstRowCalculatorButtons() {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CalculatorButton(
           text: 'C',
-          backgroundColor: Color.fromRGBO(199, 199, 204, 1),
+          backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '±',
-          backgroundColor: Color.fromRGBO(199, 199, 204, 1),
+          backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '%',
-          backgroundColor: Color.fromRGBO(199, 199, 204, 1),
+          backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '÷',
-          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
+          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
+          onPressed: () {},
         ),
       ],
     );
   }
 
   Widget secondRowCalculatorButtons() {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CalculatorButton(
           text: '7',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '8',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '9',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '×',
-          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
+          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
+          onPressed: () {},
         ),
       ],
     );
   }
 
   Widget thirdRowCalculatorButtons() {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CalculatorButton(
           text: '4',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '5',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '6',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '-',
-          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
+          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
+          onPressed: () {},
         ),
       ],
     );
   }
 
-    Widget fourthRowCalculatorButtons() {
-    return const Row(
+  Widget fourthRowCalculatorButtons() {
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CalculatorButton(
           text: '1',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '2',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '3',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '+',
-          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
+          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
+          onPressed: () {},
         ),
       ],
     );
   }
 
   Widget fivethRowCalculatorButtons() {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CalculatorButton(
           width: 156,
           text: '0',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: ',',
-          backgroundColor: Color.fromARGB(255, 51,51,51),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
           text: '=',
-          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
+          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
+          onPressed: () {},
         ),
       ],
     );
   }
 }
-
