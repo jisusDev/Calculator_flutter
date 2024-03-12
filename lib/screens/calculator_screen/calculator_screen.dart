@@ -1,6 +1,5 @@
 import 'package:calculator_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 class CalculatorScreen extends StatelessWidget {
   const CalculatorScreen({
@@ -37,6 +36,7 @@ class _Body extends StatelessWidget {
               secondRowCalculatorButtons(),
               thirdRowCalculatorButtons(),
               fourthRowCalculatorButtons(),
+              fivethRowCalculatorButtons(),
             ],
           ),
         ],
@@ -50,22 +50,22 @@ class _Body extends StatelessWidget {
       children: [
         CalculatorButton(
           text: 'C',
-          backgroundColor: CupertinoColors.systemGrey3,
+          backgroundColor: Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
         ),
         CalculatorButton(
-          text: '+/-',
-          backgroundColor: CupertinoColors.systemGrey3,
+          text: '±',
+          backgroundColor: Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
         ),
         CalculatorButton(
           text: '%',
-          backgroundColor: CupertinoColors.systemGrey3,
+          backgroundColor: Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
         ),
         CalculatorButton(
           text: '÷',
-          backgroundColor: CupertinoColors.systemOrange,
+          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
         ),
       ],
@@ -92,8 +92,8 @@ class _Body extends StatelessWidget {
           textColor: Colors.white,
         ),
         CalculatorButton(
-          text: 'X',
-          backgroundColor: CupertinoColors.systemOrange,
+          text: '×',
+          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
         ),
       ],
@@ -121,14 +121,42 @@ class _Body extends StatelessWidget {
         ),
         CalculatorButton(
           text: '-',
-          backgroundColor: CupertinoColors.systemOrange,
+          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
         ),
       ],
     );
   }
 
-  Widget fourthRowCalculatorButtons() {
+    Widget fourthRowCalculatorButtons() {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CalculatorButton(
+          text: '1',
+          backgroundColor: Color.fromARGB(255, 51,51,51),
+          textColor: Colors.white,
+        ),
+        CalculatorButton(
+          text: '2',
+          backgroundColor: Color.fromARGB(255, 51,51,51),
+          textColor: Colors.white,
+        ),
+        CalculatorButton(
+          text: '3',
+          backgroundColor: Color.fromARGB(255, 51,51,51),
+          textColor: Colors.white,
+        ),
+        CalculatorButton(
+          text: '+',
+          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
+          textColor: Colors.white,
+        ),
+      ],
+    );
+  }
+
+  Widget fivethRowCalculatorButtons() {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -145,7 +173,7 @@ class _Body extends StatelessWidget {
         ),
         CalculatorButton(
           text: '=',
-          backgroundColor: CupertinoColors.systemOrange,
+          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
         ),
       ],
