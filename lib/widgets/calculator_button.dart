@@ -27,11 +27,17 @@ class _CalculatorButtonState extends State<CalculatorButton> {
       padding: const EdgeInsets.only(bottom: 12),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
-        child: Container(
+        child: SizedBox(
           width: widget.width,
           height: 72,
-          color: widget.backgroundColor,
           child: ElevatedButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all(
+                Colors.white.withOpacity(0.3),
+              ),
+              backgroundColor:
+                  MaterialStateProperty.all(widget.backgroundColor),
+            ),
             onPressed: widget.onPressed,
             child: Text(
               widget.text,
