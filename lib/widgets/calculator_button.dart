@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class CalculatorButton extends StatefulWidget {
   final double width;
@@ -31,8 +32,7 @@ class _CalculatorButtonState extends State<CalculatorButton> {
           width: widget.width,
           height: 72,
           color: widget.backgroundColor,
-          child: CupertinoButton(
-            pressedOpacity: 0.0,
+          child: ElevatedButton(
             onPressed: widget.onPressed,
             child: Text(
               widget.text,
