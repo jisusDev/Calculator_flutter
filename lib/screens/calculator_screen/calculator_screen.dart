@@ -23,6 +23,53 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
+  String resultValue = '0';
+  String firstValue = '';
+  String secondValue = '';
+  double Function(double, double)? operation;
+  String highlightOperator = '';
+
+  void compute() {
+    setState(() {
+      resultValue = operation!
+          .call(
+            double.parse(firstValue.replaceAll(',', '.')),
+            double.parse(secondValue.replaceAll(',', '.')),
+          )
+          .toStringAsFixed(2);
+      firstValue = resultValue;
+      secondValue = '';
+      operation = null;
+    });
+  }
+
+  void addOperand(double Function(double, double) operation) {
+    highlightOperator = '';
+    if (firstValue.isEmpty) {
+      return;
+    }
+    if (secondValue.isNotEmpty) {
+      compute();
+    }
+    setState(() {
+      this.operation = operation;
+    });
+  }
+
+  void addNumber(String input) {
+    if (operation == null) {
+      setState(() {
+        firstValue += input;
+        resultValue = firstValue;
+      });
+    } else {
+      setState(() {
+        secondValue += input;
+        resultValue = secondValue;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,9 +78,9 @@ class _BodyState extends State<_Body> {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(8),
-            child: ViewResult(value: '0'),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: ViewResult(value: resultValue),
           ),
           Column(
             children: [
@@ -49,6 +96,15 @@ class _BodyState extends State<_Body> {
     );
   }
 
+  void reset() {
+    setState(() {
+      resultValue = '0';
+      firstValue = '';
+      secondValue = '';
+      operation = null;
+    });
+  }
+
   Widget firstRowCalculatorButtons() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,7 +113,9 @@ class _BodyState extends State<_Body> {
           text: 'C',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
-          onPressed: () {},
+          onPressed: () {
+            reset();
+          },
         ),
         CalculatorButton(
           text: '±',
@@ -75,7 +133,10 @@ class _BodyState extends State<_Body> {
           text: '÷',
           backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            addOperand((p0, p1) => p0 / p1);
+            setState(() => highlightOperator = '÷');
+          },
         ),
       ],
     );
@@ -89,25 +150,28 @@ class _BodyState extends State<_Body> {
           text: '7',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber('7'),
         ),
         CalculatorButton(
           text: '8',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber('8'),
         ),
         CalculatorButton(
           text: '9',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber('9'),
         ),
         CalculatorButton(
           text: '×',
           backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            addOperand((p0, p1) => p0 * p1);
+            setState(() => highlightOperator = '×');
+          },
         ),
       ],
     );
@@ -121,25 +185,28 @@ class _BodyState extends State<_Body> {
           text: '4',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber('4'),
         ),
         CalculatorButton(
           text: '5',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber('5'),
         ),
         CalculatorButton(
           text: '6',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber('6'),
         ),
         CalculatorButton(
           text: '-',
           backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            addOperand((p0, p1) => p0 - p1);
+            setState(() => highlightOperator = '-');
+          },
         ),
       ],
     );
@@ -153,25 +220,28 @@ class _BodyState extends State<_Body> {
           text: '1',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber('1'),
         ),
         CalculatorButton(
           text: '2',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber('2'),
         ),
         CalculatorButton(
           text: '3',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber('3'),
         ),
         CalculatorButton(
           text: '+',
           backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            addOperand((p0, p1) => p0 + p1);
+            setState(() => highlightOperator = '+');
+          },
         ),
       ],
     );
@@ -186,19 +256,21 @@ class _BodyState extends State<_Body> {
           text: '0',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber('0'),
         ),
         CalculatorButton(
           text: ',',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumber(','),
         ),
         CalculatorButton(
           text: '=',
           backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            compute();
+          },
         ),
       ],
     );
