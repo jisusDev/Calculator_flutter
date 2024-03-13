@@ -31,11 +31,13 @@ class _BodyState extends State<_Body> {
 
   void compute() {
     setState(() {
-      resultValue = operation! 
+      resultValue = operation!
           .call(
             double.parse(firstValue.replaceAll(',', '.')),
             double.parse(secondValue.replaceAll(',', '.')),
-          ).toStringAsFixed(2);
+          )
+          .toStringAsFixed(2);
+
       firstValue = resultValue;
       secondValue = '';
       operation = null;
@@ -58,7 +60,7 @@ class _BodyState extends State<_Body> {
     highlightOperator = '';
     if (operation == null) {
       setState(() {
-        firstValue += input; 
+        firstValue += input;
         resultValue = firstValue;
       });
     } else {
@@ -78,11 +80,6 @@ class _BodyState extends State<_Body> {
     });
   }
 
-  // void changeColorOperator(){
-  //   if (condition) {
-      
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +133,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '÷',
-          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
+          backgroundColor: highlightOperator == '÷' ? Colors.white : const Color.fromRGBO(255, 149, 0, 1),
+          textColor: highlightOperator == '÷' ? const Color.fromRGBO(255, 149, 0, 1) : Colors.white,
           onPressed: () {
             addOperand((p0, p1) => p0 / p1);
             setState(() => highlightOperator = '÷');
@@ -171,8 +168,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '×',
-          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
+          backgroundColor: highlightOperator == '×' ? Colors.white : const Color.fromRGBO(255, 149, 0, 1),
+          textColor: highlightOperator == '×' ? const Color.fromRGBO(255, 149, 0, 1) : Colors.white,
           onPressed: () {
             addOperand((p0, p1) => p0 * p1);
             setState(() => highlightOperator = '×');
@@ -206,8 +203,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '-',
-          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
+          backgroundColor: highlightOperator == '-' ? Colors.white : const Color.fromRGBO(255, 149, 0, 1),
+          textColor: highlightOperator == '-' ? const Color.fromRGBO(255, 149, 0, 1) : Colors.white,
           onPressed: () {
             addOperand((p0, p1) => p0 - p1);
             setState(() => highlightOperator = '-');
@@ -241,8 +238,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '+',
-          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
+          backgroundColor: highlightOperator == '+' ? Colors.white : const Color.fromRGBO(255, 149, 0, 1),
+          textColor: highlightOperator == '+' ? const Color.fromRGBO(255, 149, 0, 1) : Colors.white,
           onPressed: () {
             addOperand((p0, p1) => p0 + p1);
             setState(() => highlightOperator = '+');
