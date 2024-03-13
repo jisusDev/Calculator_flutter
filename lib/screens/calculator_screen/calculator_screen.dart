@@ -31,12 +31,11 @@ class _BodyState extends State<_Body> {
 
   void compute() {
     setState(() {
-      resultValue = operation!
+      resultValue = operation! 
           .call(
             double.parse(firstValue.replaceAll(',', '.')),
             double.parse(secondValue.replaceAll(',', '.')),
-          )
-          .toStringAsFixed(2);
+          ).toStringAsFixed(2);
       firstValue = resultValue;
       secondValue = '';
       operation = null;
@@ -44,7 +43,6 @@ class _BodyState extends State<_Body> {
   }
 
   void addOperand(double Function(double, double) operation) {
-    highlightOperator = '';
     if (firstValue.isEmpty) {
       return;
     }
@@ -57,9 +55,10 @@ class _BodyState extends State<_Body> {
   }
 
   void addNumber(String input) {
+    highlightOperator = '';
     if (operation == null) {
       setState(() {
-        firstValue += input;
+        firstValue += input; 
         resultValue = firstValue;
       });
     } else {
@@ -69,6 +68,21 @@ class _BodyState extends State<_Body> {
       });
     }
   }
+
+  void reset() {
+    setState(() {
+      resultValue = '0';
+      firstValue = '';
+      secondValue = '';
+      operation = null;
+    });
+  }
+
+  // void changeColorOperator(){
+  //   if (condition) {
+      
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -94,15 +108,6 @@ class _BodyState extends State<_Body> {
         ],
       ),
     );
-  }
-
-  void reset() {
-    setState(() {
-      resultValue = '0';
-      firstValue = '';
-      secondValue = '';
-      operation = null;
-    });
   }
 
   Widget firstRowCalculatorButtons() {
