@@ -13,14 +13,14 @@ class ViewResult extends StatelessWidget {
       children: [
         FittedBox(
           child: Text(
-        value,
-        maxLines: 1,
-        style: const TextStyle(
-          fontSize: 100,
-          color: Colors.white,
-          fontWeight: FontWeight.w300,
-        ),
-      ),
+            value,
+            maxLines: 1,
+            style: const TextStyle(
+              fontSize: 100,
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
+            ),
+          ),
         )
       ],
     );

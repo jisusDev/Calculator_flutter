@@ -41,12 +41,15 @@ class _CalculatorButtonState extends State<CalculatorButton> {
           backgroundColor: MaterialStateProperty.all(widget.backgroundColor),
         ),
         onPressed: widget.onPressed,
-        child: Text(
-          widget.text,
-          style: TextStyle(
-            fontSize: 36.0,
-            color: widget.textColor,
-            fontWeight: FontWeight.w500,
+        child: FittedBox(
+          child: Text(
+            widget.text,
+            style: TextStyle(
+              fontSize: 36,
+              color: widget.textColor,
+              fontWeight: FontWeight.w500,
+            ),
+            
           ),
         ),
       ),
