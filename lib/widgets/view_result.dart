@@ -9,15 +9,20 @@ class ViewResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Text(
+    return Wrap(
+      children: [
+        FittedBox(
+          child: Text(
         value,
+        maxLines: 1,
         style: const TextStyle(
-          fontSize: 120,
+          fontSize: 100,
           color: Colors.white,
           fontWeight: FontWeight.w300,
         ),
       ),
+        )
+      ],
     );
   }
 }
