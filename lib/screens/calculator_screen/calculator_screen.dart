@@ -24,8 +24,6 @@ class CalculatorScreen extends StatelessWidget {
   }
 }
 
-
-
 class _Body extends StatefulWidget {
   const _Body();
 
@@ -36,9 +34,10 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   String resultValue = '0';
   String firstValue = '';
-  String secondValue = '';
+  String secondValue = ''; //${firtsValue / 100}
   double Function(double, double)? operation;
   String highlightOperator = '';
+  //VoidCallback onPressed;
 
   void compute() {
     setState(() {
@@ -89,6 +88,15 @@ class _BodyState extends State<_Body> {
       secondValue = '';
       operation = null;
     });
+  }
+
+  void calculatePercentage() {
+    if (firstValue.isNotEmpty && secondValue.isEmpty) {
+      setState(() {
+        final double value = double.parse(firstValue.replaceAll(',', '.'));
+        resultValue = (value / 100).toStringAsFixed(3);
+      });
+    }
   }
 
   Color changeBackgroundColorOperator(String highlightOperator) {
@@ -142,7 +150,7 @@ class _BodyState extends State<_Body> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CalculatorButton(
-          text: resultValue == '0' ? 'C' : 'AC',
+          text: resultValue == '0' ? 'AC' : 'C',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
           onPressed: () {
@@ -153,13 +161,17 @@ class _BodyState extends State<_Body> {
           text: '+/-',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
-          onPressed: () {},
+          onPressed: () {
+            
+          },
         ),
         CalculatorButton(
           text: '%',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
-          onPressed: () {},
+          onPressed: () {
+            calculatePercentage();
+          },
         ),
         CalculatorButton(
           text: '÷',
