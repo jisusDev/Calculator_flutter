@@ -37,38 +37,54 @@ class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50),
+      padding: const EdgeInsets.symmetric(vertical: 40),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          rowButtonNumbers('1', '2', '3'),
-          rowButtonNumbers('4', '5', '6'),
-          rowButtonNumbers('7', '8', '9'),
-          dualButtonBottom(),
+          const Padding(
+            padding: EdgeInsets.all(24),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextfieldCalculator(labelText: 'Valor X1'),
+                    ),
+                    SizedBox(width: 16),
+                    Expanded(
+                      child: TextfieldCalculator(labelText: 'Valor Y1'),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 32),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextfieldCalculator(labelText: 'Valor X2'),
+                    ),
+                    SizedBox(width: 16),
+                    Expanded(
+                      child: TextfieldCalculator(labelText: 'Valor Y2'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 48),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: Column(
+              children: [
+                rowButtonNumbers('1', '2', '3'),
+                rowButtonNumbers('4', '5', '6'),
+                rowButtonNumbers('7', '8', '9'),
+                rowButtonNumbers(',', '0', '='),
+              ],
+            ),
+          ),
         ],
       ),
-    );
-  }
-
-  Row dualButtonBottom() {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        CalculatorButton(
-          text: '<-',
-          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
-        ),
-        CalculatorButton(
-          text: '0',
-          backgroundColor: Color.fromRGBO(199, 199, 204, 1),
-          textColor: Colors.black,
-        ),
-        CalculatorButton(
-          text: '->',
-          backgroundColor: Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
-        ),
-      ],
     );
   }
 
@@ -78,17 +94,17 @@ class _BodyState extends State<_Body> {
       children: [
         CalculatorButton(
           text: numLeft,
-          backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.black,
         ),
         CalculatorButton(
           text: numCenter,
-          backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.black,
         ),
         CalculatorButton(
           text: numRight,
-          backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
+          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.black,
         ),
       ],
