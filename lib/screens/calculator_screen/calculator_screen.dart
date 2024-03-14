@@ -8,12 +8,23 @@ class CalculatorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        actions: const [
+          ButtonChangeScreen(
+            icon: Icons.change_circle_outlined,
+            text: 'Regla de Tres',
+          ),
+        ],
+      ),
       backgroundColor: Colors.black,
-      body: _Body(),
+      body: const _Body(),
     );
   }
 }
+
+
 
 class _Body extends StatefulWidget {
   const _Body();
@@ -36,7 +47,7 @@ class _BodyState extends State<_Body> {
             double.parse(firstValue.replaceAll(',', '.')),
             double.parse(secondValue.replaceAll(',', '.')),
           )
-          .toStringAsFixed(2);
+          .toStringAsFixed(3);
 
       firstValue = resultValue;
       secondValue = '';
