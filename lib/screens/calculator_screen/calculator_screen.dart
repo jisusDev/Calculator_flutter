@@ -1,3 +1,4 @@
+import 'package:calculator_app/screens/screens.dart';
 import 'package:calculator_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +12,18 @@ class CalculatorScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        actions: const [
+        actions: [
           ButtonChangeScreen(
             icon: Icons.change_circle_outlined,
             text: 'Regla de Tres',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CrossMultiplicationScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -23,8 +32,6 @@ class CalculatorScreen extends StatelessWidget {
     );
   }
 }
-
-
 
 class _Body extends StatefulWidget {
   const _Body();
