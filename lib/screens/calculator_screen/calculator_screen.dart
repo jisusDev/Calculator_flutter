@@ -107,15 +107,24 @@ class _BodyState extends State<_Body> {
   }
 
   //funcionalidad del btn +/-
-  bool isPositive = true;
   void plussLess() {
-    if (firstValue.isNotEmpty && secondValue.isEmpty) {
-      setState(() {
-        final double value = double.parse(firstValue.replaceAll(',', '.'));
-        resultValue = (value * (isPositive ? -1 : 1)).toStringAsFixed(3);
-        isPositive = !isPositive;
-      });
-    }
+    setState(() {
+      if (firstValue.isNotEmpty && secondValue.isEmpty) {
+        if (firstValue.startsWith('-')) {
+          firstValue = firstValue.substring(1);
+        } else {
+          firstValue = '-$firstValue';
+        }
+        resultValue = firstValue;
+      } else if (firstValue.isEmpty && secondValue.isNotEmpty) {
+        if (secondValue.startsWith('-')) {
+          secondValue = secondValue.substring(1);
+        } else {
+          secondValue = '-$secondValue';
+        }
+        resultValue = secondValue;
+      }
+    });
   }
 
   //funcionalidad del btn porcentaje
@@ -153,6 +162,8 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final buttonWidth = (screenWidth - 16 * 5) / 4;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
       child: Column(
@@ -165,11 +176,11 @@ class _BodyState extends State<_Body> {
           ),
           Column(
             children: [
-              firstRowCalculatorButtons(),
-              secondRowCalculatorButtons(),
-              thirdRowCalculatorButtons(),
-              fourthRowCalculatorButtons(),
-              fivethRowCalculatorButtons(),
+              firstRowCalculatorButtons(buttonWidth),
+              secondRowCalculatorButtons(buttonWidth),
+              thirdRowCalculatorButtons(buttonWidth),
+              fourthRowCalculatorButtons(buttonWidth),
+              fivethRowCalculatorButtons(buttonWidth),
             ],
           ),
         ],
@@ -177,7 +188,7 @@ class _BodyState extends State<_Body> {
     );
   }
 
-  Widget firstRowCalculatorButtons() {
+  Widget firstRowCalculatorButtons(double buttonWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -185,6 +196,7 @@ class _BodyState extends State<_Body> {
           text: resultValue == '0' ? 'AC' : 'C',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
+          width: buttonWidth,
           onPressed: () {
             reset();
           },
@@ -193,6 +205,7 @@ class _BodyState extends State<_Body> {
           text: '+/-',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
+          width: buttonWidth,
           onPressed: () {
             plussLess();
           },
@@ -209,6 +222,7 @@ class _BodyState extends State<_Body> {
           text: '÷',
           backgroundColor: changeBackgroundColorOperator('÷'),
           textColor: changeTextColorOperator('÷'),
+          width: buttonWidth,
           onPressed: () {
             addOperand((p0, p1) => p0 / p1);
             setState(() => highlightOperator = '÷');
@@ -218,7 +232,7 @@ class _BodyState extends State<_Body> {
     );
   }
 
-  Widget secondRowCalculatorButtons() {
+  Widget secondRowCalculatorButtons(double buttonWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -226,24 +240,28 @@ class _BodyState extends State<_Body> {
           text: '7',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () => addNumber('7'),
         ),
         CalculatorButton(
           text: '8',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () => addNumber('8'),
         ),
         CalculatorButton(
           text: '9',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () => addNumber('9'),
         ),
         CalculatorButton(
           text: '×',
           backgroundColor: changeBackgroundColorOperator('×'),
           textColor: changeTextColorOperator('×'),
+          width: buttonWidth,
           onPressed: () {
             addOperand((p0, p1) => p0 * p1);
             setState(() => highlightOperator = '×');
@@ -253,7 +271,7 @@ class _BodyState extends State<_Body> {
     );
   }
 
-  Widget thirdRowCalculatorButtons() {
+  Widget thirdRowCalculatorButtons(double buttonWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -261,24 +279,28 @@ class _BodyState extends State<_Body> {
           text: '4',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () => addNumber('4'),
         ),
         CalculatorButton(
           text: '5',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () => addNumber('5'),
         ),
         CalculatorButton(
           text: '6',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () => addNumber('6'),
         ),
         CalculatorButton(
           text: '-',
           backgroundColor: changeBackgroundColorOperator('-'),
           textColor: changeTextColorOperator('-'),
+          width: buttonWidth,
           onPressed: () {
             addOperand((p0, p1) => p0 - p1);
             setState(() => highlightOperator = '-');
@@ -288,7 +310,7 @@ class _BodyState extends State<_Body> {
     );
   }
 
-  Widget fourthRowCalculatorButtons() {
+  Widget fourthRowCalculatorButtons(double buttonWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -296,24 +318,28 @@ class _BodyState extends State<_Body> {
           text: '1',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () => addNumber('1'),
         ),
         CalculatorButton(
           text: '2',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () => addNumber('2'),
         ),
         CalculatorButton(
           text: '3',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () => addNumber('3'),
         ),
         CalculatorButton(
           text: '+',
           backgroundColor: changeBackgroundColorOperator('+'),
           textColor: changeTextColorOperator('+'),
+          width: buttonWidth,
           onPressed: () {
             addOperand((p0, p1) => p0 + p1);
             setState(() => highlightOperator = '+');
@@ -323,12 +349,12 @@ class _BodyState extends State<_Body> {
     );
   }
 
-  Widget fivethRowCalculatorButtons() {
+  Widget fivethRowCalculatorButtons(double buttonWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CalculatorButton(
-          width: 156,
+          width: 182,
           text: '0',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
@@ -338,12 +364,14 @@ class _BodyState extends State<_Body> {
           text: ',',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () => addNumber(','),
         ),
         CalculatorButton(
           text: '=',
           backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
           textColor: Colors.white,
+          width: buttonWidth,
           onPressed: () {
             compute();
           },
