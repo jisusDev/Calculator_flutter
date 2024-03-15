@@ -110,7 +110,7 @@ class _BodyState extends State<_Body> {
   void calculatePercentage() {
     if (firstValue.isNotEmpty && secondValue.isEmpty) {
       setState(() {
-        final double value = double.parse(firstValue.replaceAll(',', '.'));
+        final double value = double.parse(resultValue.replaceAll(',', '.'));
         resultValue = (value / 100).toStringAsFixed(3);
       });
     }
