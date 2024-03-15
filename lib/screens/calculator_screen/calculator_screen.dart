@@ -1,6 +1,7 @@
 import 'package:calculator_app/screens/screens.dart';
 import 'package:calculator_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CalculatorScreen extends StatelessWidget {
   const CalculatorScreen({
@@ -55,11 +56,11 @@ class _BodyState extends State<_Body> {
         double.parse(firstValue.replaceAll(',', '.')),
         double.parse(secondValue.replaceAll(',', '.')),
       );
-      if (result == result.floor()) {
-        resultValue = result.toInt().toString();
-      } else {
-        resultValue = result.toStringAsFixed(2);
-      }
+        if (result == result.floor()) {
+      resultValue = NumberFormat("#,##0", "es_ES").format(result.toInt());
+    } else {
+      resultValue = NumberFormat("#,##0.000", "es_ES").format(result);
+    }
       firstValue = resultValue;
       secondValue = '';
       operation = null;
