@@ -1,3 +1,4 @@
+import 'package:calculator_app/screens/screens.dart';
 import 'package:calculator_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,24 @@ class CalculatorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        actions: [
+          ButtonChangeScreen(
+            icon: Icons.change_circle_outlined,
+            text: 'Regla de Tres',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CrossMultiplicationScreen(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
       backgroundColor: Colors.black,
       body: _Body(),
     );
