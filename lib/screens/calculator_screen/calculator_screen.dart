@@ -106,15 +106,24 @@ class _BodyState extends State<_Body> {
   }
 
   //funcionalidad del btn +/-
-  bool isPositive = true;
   void plussLess() {
-    if (firstValue.isNotEmpty && secondValue.isEmpty) {
-      setState(() {
-        final double value = double.parse(firstValue.replaceAll(',', '.'));
-        resultValue = (value * (isPositive ? -1 : 1)).toStringAsFixed(3);
-        isPositive = !isPositive;
-      });
-    }
+    setState(() {
+      if (firstValue.isNotEmpty && secondValue.isEmpty) {
+        if (firstValue.startsWith('-')) {
+          firstValue = firstValue.substring(1);
+        } else {
+          firstValue = '-$firstValue';
+        }
+        resultValue = firstValue;
+      } else if (firstValue.isEmpty && secondValue.isNotEmpty) {
+        if (secondValue.startsWith('-')) {
+          secondValue = secondValue.substring(1);
+        } else {
+          secondValue = '-$secondValue';
+        }
+        resultValue = secondValue;
+      }
+    });
   }
 
   //funcionalidad del btn porcentaje
