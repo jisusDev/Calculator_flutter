@@ -90,6 +90,19 @@ class _BodyState extends State<_Body> {
     });
   }
 
+  bool isPositive = true;
+
+void plussLess() {
+  if (firstValue.isNotEmpty && secondValue.isEmpty) {
+    setState(() {
+      final double value = double.parse(firstValue.replaceAll(',', '.'));
+      resultValue = (value * (isPositive ? -1 : 1)).toStringAsFixed(3);
+      isPositive = !isPositive; // Cambia el estado del signo
+    });
+  }
+}
+
+
   void calculatePercentage() {
     if (firstValue.isNotEmpty && secondValue.isEmpty) {
       setState(() {
@@ -162,7 +175,7 @@ class _BodyState extends State<_Body> {
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
           onPressed: () {
-            
+            plussLess();
           },
         ),
         CalculatorButton(
