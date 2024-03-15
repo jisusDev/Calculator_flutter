@@ -41,12 +41,14 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
+  //variables para los metodos
   String resultValue = '0';
   String firstValue = '';
   String secondValue = '';
   double Function(double, double)? operation;
   String highlightOperator = '';
-
+  
+  //metodo realiza funcion de igualdad con los valores introducidos
   void compute() {
     setState(() {
       resultValue = operation!
@@ -62,6 +64,7 @@ class _BodyState extends State<_Body> {
     });
   }
 
+  //agregar operador entre los dos valores, y funcion de igualdad cuando se preciona otro operador
   void addOperand(double Function(double, double) operation) {
     if (firstValue.isEmpty) {
       return;
@@ -74,6 +77,7 @@ class _BodyState extends State<_Body> {
     });
   }
 
+  //agregar cada numero a firstValue o secondValue
   void addNumber(String input) {
     highlightOperator = '';
     if (operation == null) {
@@ -89,6 +93,7 @@ class _BodyState extends State<_Body> {
     }
   }
 
+  //formatear el valores a su estado default 
   void reset() {
     setState(() {
       resultValue = '0';
@@ -98,6 +103,30 @@ class _BodyState extends State<_Body> {
     });
   }
 
+  //funcionalidad del btn +/-
+  bool isPositive = true;
+  void plussLess() {
+    if (firstValue.isNotEmpty && secondValue.isEmpty) {
+      setState(() {
+        final double value = double.parse(firstValue.replaceAll(',', '.'));
+        resultValue = (value * (isPositive ? -1 : 1)).toStringAsFixed(3);
+        isPositive = !isPositive; 
+      });
+    }
+  }
+
+  //funcionalidad del btn porcentaje 
+  void calculatePercentage() {
+    if (firstValue.isNotEmpty && secondValue.isEmpty) {
+      setState(() {
+        final double value = double.parse(resultValue.replaceAll(',', '.'));
+        resultValue = (value / 100).toStringAsFixed(3);
+      });
+    }
+  }
+
+  // cambiar el highklight de los btn operators cuando este activo o no
+  // color del background
   Color changeBackgroundColorOperator(String highlightOperator) {
     if (firstValue.isEmpty) {
       return const Color.fromRGBO(255, 149, 0, 1);
@@ -107,7 +136,7 @@ class _BodyState extends State<_Body> {
           : const Color.fromRGBO(255, 149, 0, 1);
     }
   }
-
+  // color del text
   Color changeTextColorOperator(String highlightOperator) {
     if (firstValue.isEmpty) {
       return Colors.white;
@@ -149,7 +178,7 @@ class _BodyState extends State<_Body> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CalculatorButton(
-          text: resultValue == '0' ? 'C' : 'AC',
+          text: resultValue == '0' ? 'AC' : 'C',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
           onPressed: () {
@@ -160,13 +189,17 @@ class _BodyState extends State<_Body> {
           text: '+/-',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
-          onPressed: () {},
+          onPressed: () {
+            plussLess();
+          },
         ),
         CalculatorButton(
           text: '%',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
-          onPressed: () {},
+          onPressed: () {
+            calculatePercentage();
+          },
         ),
         CalculatorButton(
           text: '÷',
