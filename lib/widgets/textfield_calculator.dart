@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class TextfieldCalculator extends StatefulWidget {
-  final Function()? onEditingComplete;
+  final Function()? onTap;
+  final TextEditingController controller;
   final String? labelText;
+  final bool readOnly;
   const TextfieldCalculator({
     super.key,
     required this.labelText,
-    this.onEditingComplete,
+    required this.controller,
+    this.onTap, this.readOnly = false,
   });
 
   @override
@@ -14,16 +17,15 @@ class TextfieldCalculator extends StatefulWidget {
 }
 
 class _TextfieldCalculatorState extends State<TextfieldCalculator> {
-  final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTap: widget.onTap,
+      controller: widget.controller,
+      readOnly: widget.readOnly,
       maxLines: 1,
-      controller: _controller,
-      focusNode: _focusNode,
-      onEditingComplete: widget.onEditingComplete,
       keyboardType: TextInputType.none,
+      style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         labelText: widget.labelText,
         floatingLabelStyle:
@@ -41,5 +43,4 @@ class _TextfieldCalculatorState extends State<TextfieldCalculator> {
       ),
     );
   }
-  
 }

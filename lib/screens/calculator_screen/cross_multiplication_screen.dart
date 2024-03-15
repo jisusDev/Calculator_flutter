@@ -34,10 +34,69 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
-  final String valueX1 = '';
-  final String valueX2 = '';
-  final String valueY1 = '';
-  final String valueY2 = '';
+  //controladores de los textfield
+  TextEditingController textEditingController1 = TextEditingController();
+  TextEditingController textEditingController2 = TextEditingController();
+  TextEditingController textEditingController3 = TextEditingController();
+  TextEditingController textEditingController4 = TextEditingController();
+
+  //variables para ejecutar la operacion matematica
+  double? valueX1;
+  double? valueY1;
+  double? valueX2;
+  double? valueY2Result;
+
+
+  //convierte los valores de los controller en numeros
+  @override
+  void initState() {
+    super.initState();
+    valueX1 = double.tryParse(textEditingController2.text);
+    valueY1 = double.tryParse(textEditingController3.text);
+    valueX2 = double.tryParse(textEditingController1.text);
+    currentTextField = textEditingController1;
+    crossMultiplicationFuntion();
+  }
+
+  // funcion que calcula la regla de tres donde multiplica y luego divide
+  void crossMultiplicationFuntion() {
+    if (valueX1 != null && valueY1 != null && valueX2 != null && valueY1 != 0) {
+      valueY2Result = (valueX1! * valueY1!) / valueX2!;
+    } else {
+      valueY2Result = null;
+    }
+    //intento de agregar el resultado a un textfield
+    if (valueY2Result != null) {
+      textEditingController4.text = valueY2Result.toString();
+    } else {
+      textEditingController4.text = '';
+    }
+  }
+
+  TextEditingController? currentTextField;
+
+  void updateTextField(String value) {
+    setState(() {
+      currentTextField!.text = value;
+    });
+  }
+
+  //agrega numero por numero al string del textfield seleccionado
+  void addNumbers(String input) {
+    String currentValue = currentTextField!.text;
+    updateTextField(currentValue + input);
+  }
+
+  //eliminar numeros introducidos al textfield
+  void deleteLastNumber() {
+    if (currentTextField != null) {
+      String currentValue = currentTextField!.text;
+      if (currentValue.isNotEmpty) {
+        String newValue = currentValue.substring(0, currentValue.length - 1);
+        updateTextField(newValue);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,31 +126,58 @@ class _BodyState extends State<_Body> {
     );
   }
 
-  final TextfieldCalculator textFieldCalculatorX1 =
-      const TextfieldCalculator(labelText: 'Valor X1');
-  final TextfieldCalculator textFieldCalculatorY1 =
-      const TextfieldCalculator(labelText: 'Valor Y1');
-  final TextfieldCalculator textFieldCalculatorX2 =
-      const TextfieldCalculator(labelText: 'Valor X2');
-  final TextfieldCalculator textFieldCalculatorY2 =
-      const TextfieldCalculator(labelText: 'Valor Y2');
-
   Column groupTextfield() {
     return Column(
       children: [
         Row(
           children: [
-            Expanded(child: textFieldCalculatorX1),
+            Expanded(
+              child: TextfieldCalculator(
+                labelText: 'Valor X1',
+                controller: textEditingController1,
+                onTap: () {
+                  setState(() {
+                    currentTextField = textEditingController1;
+                  });
+                },
+              ),
+            ),
             const SizedBox(width: 32),
-            Expanded(child: textFieldCalculatorY1),
+            Expanded(
+              child: TextfieldCalculator(
+                labelText: 'Valor Y1',
+                controller: textEditingController2,
+                onTap: () {
+                  setState(() {
+                    currentTextField = textEditingController2;
+                  });
+                },
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 48),
         Row(
           children: [
-            Expanded(child: textFieldCalculatorX2),
+            Expanded(
+              child: TextfieldCalculator(
+                labelText: 'Valor X2',
+                controller: textEditingController3,
+                onTap: () {
+                  setState(() {
+                    currentTextField = textEditingController3;
+                  });
+                },
+              ),
+            ),
             const SizedBox(width: 32),
-            Expanded(child: textFieldCalculatorY2),
+            Expanded(
+              child: TextfieldCalculator(
+                readOnly: true,
+                labelText: 'Valor Y2',
+                controller: textEditingController4,
+              ),
+            ),
           ],
         ),
       ],
@@ -110,19 +196,19 @@ class _BodyState extends State<_Body> {
           text: '1',
           backgroundColor: colorGrayButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumbers('1'),
         ),
         CalculatorButton(
           text: '2',
           backgroundColor: colorGrayButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumbers('2'),
         ),
         CalculatorButton(
           text: '3',
           backgroundColor: colorGrayButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumbers('3'),
         ),
       ],
     );
@@ -136,19 +222,19 @@ class _BodyState extends State<_Body> {
           text: '4',
           backgroundColor: colorGrayButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumbers('4'),
         ),
         CalculatorButton(
           text: '5',
           backgroundColor: colorGrayButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumbers('5'),
         ),
         CalculatorButton(
           text: '6',
           backgroundColor: colorGrayButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumbers('6'),
         ),
       ],
     );
@@ -162,19 +248,19 @@ class _BodyState extends State<_Body> {
           text: '7',
           backgroundColor: colorGrayButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumbers('7'),
         ),
         CalculatorButton(
           text: '8',
           backgroundColor: colorGrayButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumbers('8'),
         ),
         CalculatorButton(
           text: '9',
           backgroundColor: colorGrayButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumbers('9'),
         ),
       ],
     );
@@ -188,19 +274,21 @@ class _BodyState extends State<_Body> {
           text: ',',
           backgroundColor: colorWhiteButton,
           textColor: Colors.black,
-          onPressed: () {},
+          onPressed: () => addNumbers(','),
         ),
         CalculatorButton(
           text: '0',
           backgroundColor: colorGrayButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () => addNumbers('0'),
         ),
         CalculatorButton(
           text: '=',
           backgroundColor: colorOrangeButton,
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            deleteLastNumber();
+          },
         ),
       ],
     );
