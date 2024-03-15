@@ -28,7 +28,7 @@ class CalculatorScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.black,
-      body: _Body(),
+      body: const _Body(),
     );
   }
 }
@@ -47,17 +47,19 @@ class _BodyState extends State<_Body> {
   String secondValue = '';
   double Function(double, double)? operation;
   String highlightOperator = '';
-  
+
   //metodo realiza funcion de igualdad con los valores introducidos
   void compute() {
     setState(() {
-      resultValue = operation!
-          .call(
-            double.parse(firstValue.replaceAll(',', '.')),
-            double.parse(secondValue.replaceAll(',', '.')),
-          )
-          .toStringAsFixed(3);
-
+      double result = operation!.call(
+        double.parse(firstValue.replaceAll(',', '.')),
+        double.parse(secondValue.replaceAll(',', '.')),
+      );
+      if (result == result.floor()) {
+        resultValue = result.toInt().toString();
+      } else {
+        resultValue = result.toStringAsFixed(2);
+      }
       firstValue = resultValue;
       secondValue = '';
       operation = null;
@@ -93,7 +95,7 @@ class _BodyState extends State<_Body> {
     }
   }
 
-  //formatear el valores a su estado default 
+  //formatear el valores a su estado default
   void reset() {
     setState(() {
       resultValue = '0';
@@ -110,12 +112,12 @@ class _BodyState extends State<_Body> {
       setState(() {
         final double value = double.parse(firstValue.replaceAll(',', '.'));
         resultValue = (value * (isPositive ? -1 : 1)).toStringAsFixed(3);
-        isPositive = !isPositive; 
+        isPositive = !isPositive;
       });
     }
   }
 
-  //funcionalidad del btn porcentaje 
+  //funcionalidad del btn porcentaje
   void calculatePercentage() {
     if (firstValue.isNotEmpty && secondValue.isEmpty) {
       setState(() {
@@ -136,6 +138,7 @@ class _BodyState extends State<_Body> {
           : const Color.fromRGBO(255, 149, 0, 1);
     }
   }
+
   // color del text
   Color changeTextColorOperator(String highlightOperator) {
     if (firstValue.isEmpty) {
@@ -186,7 +189,7 @@ class _BodyState extends State<_Body> {
           },
         ),
         CalculatorButton(
-          text: '±',
+          text: '+/-',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
           onPressed: () {
@@ -203,8 +206,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '÷',
-          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
+          backgroundColor: changeBackgroundColorOperator('÷'),
+          textColor: changeTextColorOperator('÷'),
           onPressed: () {
             addOperand((p0, p1) => p0 / p1);
             setState(() => highlightOperator = '÷');
@@ -238,8 +241,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '×',
-          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
+          backgroundColor: changeBackgroundColorOperator('×'),
+          textColor: changeTextColorOperator('×'),
           onPressed: () {
             addOperand((p0, p1) => p0 * p1);
             setState(() => highlightOperator = '×');
@@ -273,8 +276,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '-',
-          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
+          backgroundColor: changeBackgroundColorOperator('-'),
+          textColor: changeTextColorOperator('-'),
           onPressed: () {
             addOperand((p0, p1) => p0 - p1);
             setState(() => highlightOperator = '-');
@@ -308,8 +311,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '+',
-          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
+          backgroundColor: changeBackgroundColorOperator('+'),
+          textColor: changeTextColorOperator('+'),
           onPressed: () {
             addOperand((p0, p1) => p0 + p1);
             setState(() => highlightOperator = '+');
