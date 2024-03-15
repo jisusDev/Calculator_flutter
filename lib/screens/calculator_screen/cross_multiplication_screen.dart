@@ -67,30 +67,31 @@ class _BodyState extends State<_Body> {
     );
   }
 
+  final TextfieldCalculator textFieldCalculatorX1 =
+      const TextfieldCalculator(labelText: 'Valor X1');
+  final TextfieldCalculator textFieldCalculatorY1 =
+      const TextfieldCalculator(labelText: 'Valor Y1');
+  final TextfieldCalculator textFieldCalculatorX2 =
+      const TextfieldCalculator(labelText: 'Valor X2');
+  final TextfieldCalculator textFieldCalculatorY2 =
+      const TextfieldCalculator(labelText: 'Valor Y2');
+
   Column groupTextfield() {
-    return const Column(
+    return Column(
       children: [
         Row(
           children: [
-            Expanded(
-              child: TextfieldCalculator(labelText: 'Valor X1'),
-            ),
-            SizedBox(width: 32),
-            Expanded(
-              child: TextfieldCalculator(labelText: 'Valor Y1'),
-            ),
+            Expanded(child: textFieldCalculatorX1),
+            const SizedBox(width: 32),
+            Expanded(child: textFieldCalculatorY1),
           ],
         ),
-        SizedBox(height: 48),
+        const SizedBox(height: 48),
         Row(
           children: [
-            Expanded(
-              child: TextfieldCalculator(labelText: 'Valor X2'),
-            ),
-            SizedBox(width: 32),
-            Expanded(
-              child: TextfieldCalculator(labelText: 'Valor Y2'),
-            ),
+            Expanded(child: textFieldCalculatorX2),
+            const SizedBox(width: 32),
+            Expanded(child: textFieldCalculatorY2),
           ],
         ),
       ],
