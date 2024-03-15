@@ -28,7 +28,7 @@ class CalculatorScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.black,
-      body: const _Body(),
+      body: _Body(),
     );
   }
 }
@@ -186,7 +186,7 @@ class _BodyState extends State<_Body> {
           },
         ),
         CalculatorButton(
-          text: '+/-',
+          text: '±',
           backgroundColor: const Color.fromRGBO(199, 199, 204, 1),
           textColor: Colors.black,
           onPressed: () {
@@ -203,8 +203,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '÷',
-          backgroundColor: changeBackgroundColorOperator('÷'),
-          textColor: changeTextColorOperator('÷'),
+          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
+          textColor: Colors.white,
           onPressed: () {
             addOperand((p0, p1) => p0 / p1);
             setState(() => highlightOperator = '÷');
@@ -238,8 +238,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '×',
-          backgroundColor: changeBackgroundColorOperator('×'),
-          textColor: changeTextColorOperator('×'),
+          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
+          textColor: Colors.white,
           onPressed: () {
             addOperand((p0, p1) => p0 * p1);
             setState(() => highlightOperator = '×');
@@ -273,8 +273,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '-',
-          backgroundColor: changeBackgroundColorOperator('-'),
-          textColor: changeTextColorOperator('-'),
+          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
+          textColor: Colors.white,
           onPressed: () {
             addOperand((p0, p1) => p0 - p1);
             setState(() => highlightOperator = '-');
@@ -308,8 +308,8 @@ class _BodyState extends State<_Body> {
         ),
         CalculatorButton(
           text: '+',
-          backgroundColor: changeBackgroundColorOperator('+'),
-          textColor: changeTextColorOperator('+'),
+          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
+          textColor: Colors.white,
           onPressed: () {
             addOperand((p0, p1) => p0 + p1);
             setState(() => highlightOperator = '+');
