@@ -34,6 +34,11 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
+  final String valueX1 = '';
+  final String valueX2 = '';
+  final String valueY1 = '';
+  final String valueY2 = '';
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,45 +46,19 @@ class _BodyState extends State<_Body> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(24),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextfieldCalculator(labelText: 'Valor X1'),
-                    ),
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: TextfieldCalculator(labelText: 'Valor Y1'),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 32),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextfieldCalculator(labelText: 'Valor X2'),
-                    ),
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: TextfieldCalculator(labelText: 'Valor Y2'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 48),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: groupTextfield(),
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 48),
             child: Column(
               children: [
-                rowButtonNumbers('1', '2', '3'),
-                rowButtonNumbers('4', '5', '6'),
-                rowButtonNumbers('7', '8', '9'),
-                rowButtonNumbers(',', '0', '='),
+                firstRowCrossMultButtons(),
+                secondRowCrossMultButtons(),
+                thirdRowCrossMultButtons(),
+                fourthRowCrossMultButtons(),
               ],
             ),
           ),
@@ -88,24 +67,139 @@ class _BodyState extends State<_Body> {
     );
   }
 
-  Row rowButtonNumbers(String numLeft, String numCenter, String numRight) {
+  Column groupTextfield() {
+    return const Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: TextfieldCalculator(labelText: 'Valor X1'),
+            ),
+            SizedBox(width: 32),
+            Expanded(
+              child: TextfieldCalculator(labelText: 'Valor Y1'),
+            ),
+          ],
+        ),
+        SizedBox(height: 48),
+        Row(
+          children: [
+            Expanded(
+              child: TextfieldCalculator(labelText: 'Valor X2'),
+            ),
+            SizedBox(width: 32),
+            Expanded(
+              child: TextfieldCalculator(labelText: 'Valor Y2'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  final Color colorGrayButton = const Color.fromARGB(255, 51, 51, 51);
+  final Color colorWhiteButton = const Color.fromRGBO(199, 199, 204, 1);
+  final Color colorOrangeButton = const Color.fromRGBO(255, 149, 0, 1);
+
+  Widget firstRowCrossMultButtons() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CalculatorButton(
-          text: numLeft,
-          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
-          textColor: Colors.black,
+          text: '1',
+          backgroundColor: colorGrayButton,
+          textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
-          text: numCenter,
-          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
-          textColor: Colors.black,
+          text: '2',
+          backgroundColor: colorGrayButton,
+          textColor: Colors.white,
+          onPressed: () {},
         ),
         CalculatorButton(
-          text: numRight,
-          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
+          text: '3',
+          backgroundColor: colorGrayButton,
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+      ],
+    );
+  }
+
+  Widget secondRowCrossMultButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CalculatorButton(
+          text: '4',
+          backgroundColor: colorGrayButton,
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+        CalculatorButton(
+          text: '5',
+          backgroundColor: colorGrayButton,
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+        CalculatorButton(
+          text: '6',
+          backgroundColor: colorGrayButton,
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+      ],
+    );
+  }
+
+  Widget thirdRowCrossMultButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CalculatorButton(
+          text: '7',
+          backgroundColor: colorGrayButton,
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+        CalculatorButton(
+          text: '8',
+          backgroundColor: colorGrayButton,
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+        CalculatorButton(
+          text: '9',
+          backgroundColor: colorGrayButton,
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+      ],
+    );
+  }
+
+  Widget fourthRowCrossMultButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CalculatorButton(
+          text: ',',
+          backgroundColor: colorWhiteButton,
           textColor: Colors.black,
+          onPressed: () {},
+        ),
+        CalculatorButton(
+          text: '0',
+          backgroundColor: colorGrayButton,
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+        CalculatorButton(
+          text: '=',
+          backgroundColor: colorOrangeButton,
+          textColor: Colors.white,
+          onPressed: () {},
         ),
       ],
     );
