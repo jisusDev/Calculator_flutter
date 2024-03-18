@@ -46,31 +46,31 @@ class _BodyState extends State<_Body> {
   double? valueX2;
   double? valueY2Result;
 
-
   //convierte los valores de los controller en numeros
   @override
   void initState() {
     super.initState();
-    valueX1 = double.tryParse(textEditingController2.text);
-    valueY1 = double.tryParse(textEditingController3.text);
-    valueX2 = double.tryParse(textEditingController1.text);
     currentTextField = textEditingController1;
-    crossMultiplicationFuntion();
   }
 
   // funcion que calcula la regla de tres donde multiplica y luego divide
   void crossMultiplicationFuntion() {
+    valueX1 = double.tryParse(textEditingController2.text);
+    valueY1 = double.tryParse(textEditingController3.text);
+    valueX2 = double.tryParse(textEditingController1.text);
     if (valueX1 != null && valueY1 != null && valueX2 != null && valueY1 != 0) {
       valueY2Result = (valueX1! * valueY1!) / valueX2!;
     } else {
       valueY2Result = null;
     }
     //intento de agregar el resultado a un textfield
-    if (valueY2Result != null) {
-      textEditingController4.text = valueY2Result.toString();
-    } else {
-      textEditingController4.text = '';
-    }
+    setState(() {
+      if (valueY2Result != null) {
+        textEditingController4.text = valueY2Result.toString();
+      } else {
+        textEditingController4.text = '';
+      }
+    });
   }
 
   TextEditingController? currentTextField;
@@ -84,7 +84,13 @@ class _BodyState extends State<_Body> {
   //agrega numero por numero al string del textfield seleccionado
   void addNumbers(String input) {
     String currentValue = currentTextField!.text;
-    updateTextField(currentValue + input);
+    if (currentValue.length < 9) {
+      updateTextField(currentValue + input);
+    }
+
+    setState(() {
+      crossMultiplicationFuntion();
+    });
   }
 
   //eliminar numeros introducidos al textfield
@@ -135,6 +141,11 @@ class _BodyState extends State<_Body> {
               child: TextfieldCalculator(
                 labelText: 'Valor X1',
                 controller: textEditingController1,
+                onChanged: (value) {
+                  setState(() {
+                    crossMultiplicationFuntion();
+                  });
+                },
                 onTap: () {
                   setState(() {
                     currentTextField = textEditingController1;
@@ -147,6 +158,11 @@ class _BodyState extends State<_Body> {
               child: TextfieldCalculator(
                 labelText: 'Valor Y1',
                 controller: textEditingController2,
+                onChanged: (value) {
+                  setState(() {
+                    crossMultiplicationFuntion();
+                  });
+                },
                 onTap: () {
                   setState(() {
                     currentTextField = textEditingController2;
@@ -163,6 +179,11 @@ class _BodyState extends State<_Body> {
               child: TextfieldCalculator(
                 labelText: 'Valor X2',
                 controller: textEditingController3,
+                onChanged: (value) {
+                  setState(() {
+                    crossMultiplicationFuntion();
+                  });
+                },
                 onTap: () {
                   setState(() {
                     currentTextField = textEditingController3;
@@ -274,7 +295,7 @@ class _BodyState extends State<_Body> {
           text: ',',
           backgroundColor: colorWhiteButton,
           textColor: Colors.black,
-          onPressed: () => addNumbers(','),
+          onPressed: () => addNumbers('.'),
         ),
         CalculatorButton(
           text: '0',
@@ -288,6 +309,7 @@ class _BodyState extends State<_Body> {
           textColor: Colors.white,
           onPressed: () {
             deleteLastNumber();
+            crossMultiplicationFuntion();
           },
         ),
       ],
