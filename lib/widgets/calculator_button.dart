@@ -6,10 +6,10 @@ class CalculatorButton extends StatefulWidget {
   final Color backgroundColor;
   final Color textColor;
   final Function()? onPressed;
-  final Icon? icon;
+  final IconData? icon;
   const CalculatorButton({
     super.key,
-    required this.text,
+    this.text = '',
     required this.backgroundColor,
     required this.textColor,
     this.onPressed,
@@ -43,16 +43,28 @@ class _CalculatorButtonState extends State<CalculatorButton> {
         ),
         onPressed: widget.onPressed,
         child: FittedBox(
-          child: Text(
-            widget.text,
-            style: TextStyle(
-              fontSize: 36,
-              color: widget.textColor,
-              fontWeight: FontWeight.w500,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (widget.icon != null) 
+                Icon(
+                  widget.icon,
+                  color: widget.textColor,
+                ),
+              if (widget.text.isNotEmpty)
+                Text(
+                  widget.text,
+                  style: TextStyle(
+                    fontSize: 36,
+                    color: widget.textColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+            ],
           ),
         ),
       ),
     );
   }
 }
+// Icon(widget.icon),

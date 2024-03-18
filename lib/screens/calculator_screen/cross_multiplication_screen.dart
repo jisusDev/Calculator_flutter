@@ -195,7 +195,7 @@ class _BodyState extends State<_Body> {
             Expanded(
               child: TextfieldCalculator(
                 readOnly: true,
-                labelText: 'Valor Y2',
+                labelText: 'Resultado',
                 controller: textEditingController4,
               ),
             ),
@@ -304,7 +304,7 @@ class _BodyState extends State<_Body> {
           onPressed: () => addNumbers('0'),
         ),
         CalculatorButton(
-          text: '=',
+          icon: Icons.backspace_outlined,
           backgroundColor: colorOrangeButton,
           textColor: Colors.white,
           onPressed: () {
