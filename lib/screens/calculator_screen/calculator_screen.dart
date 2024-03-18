@@ -56,11 +56,11 @@ class _BodyState extends State<_Body> {
         double.parse(firstValue.replaceAll(',', '.')),
         double.parse(secondValue.replaceAll(',', '.')),
       );
-        if (result == result.floor()) {
-      resultValue = NumberFormat("#,##0", "es_ES").format(result.toInt());
-    } else {
-      resultValue = NumberFormat("#,##0.000", "es_ES").format(result);
-    }
+      if (result == result.floor()) {
+        resultValue = NumberFormat("#,##0", "es_ES").format(result.toInt());
+      } else {
+        resultValue = NumberFormat("#,##0.000", "es_ES").format(result);
+      }
       firstValue = resultValue;
       secondValue = '';
       operation = null;
@@ -129,11 +129,27 @@ class _BodyState extends State<_Body> {
 
   //funcionalidad del btn porcentaje
   void calculatePercentage() {
-    if (firstValue.isNotEmpty && secondValue.isEmpty) {
+    if (resultValue.isNotEmpty) {
       setState(() {
         final double value = double.parse(resultValue.replaceAll(',', '.'));
-        resultValue = (value / 100).toStringAsFixed(3);
+        final double result = value / 100;
+        resultValue = formatResult(result);
       });
+    }
+  }
+
+  String formatResult(double result) {
+    String resultString = result.toString();
+    if (resultString.contains('.')) {
+      List<String> parts = resultString.split('.');
+      if (parts.length > 1) {
+        if (parts[1].length > 3) {
+          parts[1] = parts[1].substring(0, 3);
+        }
+      }
+      return parts.join('.');
+    } else {
+      return resultString;
     }
   }
 
