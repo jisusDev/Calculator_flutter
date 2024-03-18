@@ -109,21 +109,15 @@ class _BodyState extends State<_Body> {
   //funcionalidad del btn +/-
   void plussLess() {
     setState(() {
-      if (firstValue.isNotEmpty && secondValue.isEmpty) {
-        if (firstValue.startsWith('-')) {
-          firstValue = firstValue.substring(1);
-        } else {
-          firstValue = '-$firstValue';
-        }
-        resultValue = firstValue;
-      } else if (firstValue.isEmpty && secondValue.isNotEmpty) {
-        if (secondValue.startsWith('-')) {
-          secondValue = secondValue.substring(1);
-        } else {
-          secondValue = '-$secondValue';
-        }
-        resultValue = secondValue;
-      }
+      String currentValue = resultValue.replaceAll(',', '.');
+
+      bool isNegative = currentValue.startsWith('-');
+
+      currentValue = isNegative ? currentValue.substring(1) : '-$currentValue';
+
+      resultValue = formatResult(
+        double.parse(currentValue),
+      );
     });
   }
 

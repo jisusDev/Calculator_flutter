@@ -6,7 +6,7 @@ class CalculatorButton extends StatefulWidget {
   final Color backgroundColor;
   final Color textColor;
   final Function()? onPressed;
-
+  final Icon? icon;
   const CalculatorButton({
     super.key,
     required this.text,
@@ -14,6 +14,7 @@ class CalculatorButton extends StatefulWidget {
     required this.textColor,
     this.onPressed,
     this.width = 72,
+    this.icon,
   });
 
   @override
@@ -49,7 +50,6 @@ class _CalculatorButtonState extends State<CalculatorButton> {
               color: widget.textColor,
               fontWeight: FontWeight.w500,
             ),
-            
           ),
         ),
       ),
