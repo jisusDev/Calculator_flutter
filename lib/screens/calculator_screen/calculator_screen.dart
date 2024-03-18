@@ -360,33 +360,39 @@ class _BodyState extends State<_Body> {
   }
 
   Widget fivethRowCalculatorButtons(double buttonWidth) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        CalculatorButton(
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Expanded(
+        flex: 2, 
+        child: CalculatorButton(
           width: 182,
           text: '0',
           backgroundColor: const Color.fromARGB(255, 51, 51, 51),
           textColor: Colors.white,
           onPressed: () => addNumber('0'),
         ),
-        CalculatorButton(
-          text: ',',
-          backgroundColor: const Color.fromARGB(255, 51, 51, 51),
-          textColor: Colors.white,
-          width: buttonWidth,
-          onPressed: () => addNumber(','),
-        ),
-        CalculatorButton(
-          text: '=',
-          backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
-          textColor: Colors.white,
-          width: buttonWidth,
-          onPressed: () {
-            compute();
-          },
-        ),
-      ],
-    );
-  }
+      ),
+      const SizedBox(width: 16), 
+      CalculatorButton(
+        text: ',',
+        backgroundColor: const Color.fromARGB(255, 51, 51, 51),
+        textColor: Colors.white,
+        width: buttonWidth,
+        onPressed: () => addNumber(','),
+      ),
+     const SizedBox(width: 16),
+      CalculatorButton(
+        text: '=',
+        backgroundColor: const Color.fromRGBO(255, 149, 0, 1),
+        textColor: Colors.white,
+        width: buttonWidth,
+        onPressed: () { 
+          compute();
+        },
+      ),
+    ],
+  );
+}
+
 }
