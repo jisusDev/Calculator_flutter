@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextfieldCalculator extends StatefulWidget {
   final Function()? onTap;
+  final Function(String)? onChanged;
   final TextEditingController controller;
   final String? labelText;
   final bool readOnly;
@@ -9,7 +11,9 @@ class TextfieldCalculator extends StatefulWidget {
     super.key,
     required this.labelText,
     required this.controller,
-    this.onTap, this.readOnly = false,
+    this.onTap,
+    this.readOnly = false,
+    this.onChanged,
   });
 
   @override
@@ -20,7 +24,9 @@ class _TextfieldCalculatorState extends State<TextfieldCalculator> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      inputFormatters: [LengthLimitingTextInputFormatter(9)],
       onTap: widget.onTap,
+      onChanged: widget.onChanged,
       controller: widget.controller,
       readOnly: widget.readOnly,
       maxLines: 1,
